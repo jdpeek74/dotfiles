@@ -7,6 +7,10 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 binaries=(
+  coreutils
+  moreutils
+  findutils
+  grc
   python
   node
   tree
@@ -22,6 +26,7 @@ binaries=(
   scipy
   lua
   rhino
+  mtr
 )
 
 apps=(
