@@ -97,6 +97,11 @@ alias hidefiles="defaults write com.apple.finder AppleShowAllFiles NO && killall
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
+# Have iTunes show growlers from the dock for what's playing
+alias growlTunes="defaults write com.apple.dock itunes-notifications -bool true && killall Dock"
+alias plainTunes="defaults write com.apple.dock itunes-notifications -bool false && killall Dock"
+
+
 # URL-encode strings
 alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
 

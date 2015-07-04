@@ -36,6 +36,7 @@ apps=(
   flash
   iterm2
   atom
+  sequel-pro
 )
 
 fonts=()
