@@ -81,3 +81,5 @@ npm install -g grunt-cli
 npm install -g typescript
 npm install -g jshint
 npm install -g less
+npm install -g express
+npm install -g express-generator
