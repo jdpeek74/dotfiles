@@ -83,3 +83,5 @@ npm install -g jshint
 npm install -g less
 npm install -g express
 npm install -g express-generator
+npm install -g nodemon
+npm install -g gulp
