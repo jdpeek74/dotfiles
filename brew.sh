@@ -85,3 +85,8 @@ npm install -g express
 npm install -g express-generator
 npm install -g nodemon
 npm install -g gulp
+npm install -g mongoose
+npm install -g body-parser
+npm install -g gulp-mocha
+npm install -g should
+npm install -g sinon
