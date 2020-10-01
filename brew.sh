@@ -54,8 +54,6 @@ brew update
 brew upgrade --all
 
 brew install caskroom/cask/brew-cask
-brew tap samueljohn/python
-brew tap homebrew/science
 
 echo "installing binaries..."
 brew install ${binaries[@]}

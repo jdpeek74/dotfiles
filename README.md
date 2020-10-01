@@ -1,2 +1,2 @@
 # dotfiles
-My Mac Dotfiles
+My Mac Dotfiles & Shell Scripts
