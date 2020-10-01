@@ -37,6 +37,7 @@ apps=(
   iterm2
   atom
   sequel-pro
+  brackets
 )
 
 fonts=()
@@ -90,3 +91,4 @@ npm install -g body-parser
 npm install -g gulp-mocha
 npm install -g should
 npm install -g sinon
+npm install -g angular
