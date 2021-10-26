@@ -38,6 +38,7 @@ apps=(
   atom
   sequel-pro
   brackets
+  starship
 )
 
 fonts=()
