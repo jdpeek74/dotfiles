@@ -1,12 +1,8 @@
-# Easier navigation: .., ..., ...., ....., ~ and -
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ~="cd ~" # `cd` is probably faster to type though
-alias -- -="cd -"
+# For bash and zsh
 
 # Shortcuts
+alias zshconfig="code ~/.zshrc"
+alias ohmyzsh="code ~/.oh-my-zsh"
 alias dbx="cd ~/Documents/Dropbox"
 alias dls="cd ~/Downloads"
 alias dt="cd ~/Desktop"

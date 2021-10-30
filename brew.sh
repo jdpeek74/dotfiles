@@ -7,15 +7,21 @@ sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 binaries=(
+  ack
   coreutils
   moreutils
   findutils
   grc
   python
   node
+  nvm
   tree
   git
   ruby
+  rbenv 
+  ruby-build 
+  rbenv-default-gems 
+  rbenv-gemset
   mysql
   postgresql
   sqlite
@@ -27,18 +33,32 @@ binaries=(
   lua
   rhino
   mtr
+  tree
+  scala
+  sbt
+  openjdk
+  rustup
+  go
 )
 
 apps=(
   alfred
+  appcleaner
+  cheatsheet
+  docker
+  docker-machine
   dropbox
   google-chrome
-  flash
   iterm2
   atom
   sequel-pro
   brackets
   starship
+  the-unarchiver
+  transmission
+  valentina-studio
+  visual-studio-code
+  vlc
 )
 
 fonts=()
@@ -66,6 +86,9 @@ brew cask install --appdir"/Applications" ${apps[@]}
 brew tap caskroom/versions
 brew cask alfred link
 
+#installing Quicklook Plugins
+brew install --cask qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzip webpquicklook suspicious-package
+
 echo "installing fonts..."
 brew tap caskroom/fonts
 brew cask install ${fonts[@]}
@@ -91,3 +114,14 @@ npm install -g gulp-mocha
 npm install -g should
 npm install -g sinon
 npm install -g angular
+
+# pip
+pip3 install virtualenv
+pip3 install numpy 
+pip3 install scipy 
+pip3 install matplotlib 
+pip3 install ipython 
+pip3 install jupyter 
+pip3 install pandas 
+pip3 install sympy 
+pip3 install nose
