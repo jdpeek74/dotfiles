@@ -129,5 +129,4 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
 autoload -Uz compinit && compinit
 
-eval "$(pyenv init -)" >> ~/.bash_profile
 eval "$(starship init zsh)"
