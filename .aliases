@@ -31,9 +31,6 @@ alias lsd="ls -lF ${colorflag} | grep --color=never '^d'"
 # File size
 alias fs="stat -f \"%z bytes\""
 
-# Empty the Trash on all mounted volumes and the main HDD
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
-
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
