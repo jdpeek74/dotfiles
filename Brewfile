@@ -64,7 +64,6 @@ brew "zsh-completions"
 # mas
 
 # cask
-cask "alfred"
 cask "brackets"
 cask "cheatsheet"
 cask "docker"
