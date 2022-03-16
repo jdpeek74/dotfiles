@@ -1,4 +1,0 @@
-# Copy with progress
-function cp_p() {
-	rsync -WavP --human-readable --progress $1 $2
-}
