@@ -6,7 +6,6 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "mas-cli/tap"
 tap "mongodb/brew"
-tap "homebrew/versions"
 
 # brew
 brew "ack"
