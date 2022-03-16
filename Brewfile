@@ -6,8 +6,6 @@ tap "homebrew/core"
 tap "homebrew/services"
 tap "mas-cli/tap"
 tap "mongodb/brew"
-tap "caskroom/cask"
-tap "caskroom/fonts"
 tap "homebrew/versions"
 
 # brew
