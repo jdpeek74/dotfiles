@@ -117,11 +117,6 @@ export LC_ALL='en_US.UTF-8';
 source ~/.aliases
 
 # Functions 
-fpath+=~/Projects/dotfiles/functions
-autoload mkd
-autoload cp_p
-autoload targz
-autoload extract
 
 # case insensitive path-completion
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
