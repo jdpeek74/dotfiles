@@ -6,7 +6,8 @@ alias ohmyzsh="code ~/.oh-my-zsh"
 alias dbx="cd ~/Documents/Dropbox"
 alias dls="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias proj="cd ~/Projects"
+alias proj="cd ~/Developer/Projects"
+alias dotfiles="cd ~/Developer/Projects/dotfiles"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
