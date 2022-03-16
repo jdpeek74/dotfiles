@@ -33,6 +33,13 @@ symbol = "  "
 style = "cyan bold"
 format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
 
+# Azure
+[azure]
+disabled = false
+format = "[$symbol($subscription)]($style)"
+symbol = "ﴃ "
+style = "blue bold"
+
 # Docker
 [docker_context]
 format = "via [🐋 $context](blue bold)"
