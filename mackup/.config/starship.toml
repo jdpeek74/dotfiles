@@ -9,53 +9,53 @@ add_newline = false
 
 # Replaces the default "❯" symbol in the prompt with "➜"
 [character]                             # The name of the module we are configuring is "character"
-success_symbol = " [➜](bold green) "     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-error_symbol = " [✗](bold red) "         # The "error_symbol" segment is being set to "➜" with the color "bold red"
+success_symbol = "[➜](bold green) "     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[✗](bold red) "         # The "error_symbol" segment is being set to "➜" with the color "bold red"
 
 # Directory options
 [directory]
 truncation_length = 8
 truncation_symbol = "…/"
+read_only = " "
 
 # Disable the package module, hiding it from the prompt completely
 [package]
 format = "via [📦 $version](208 bold) "
 
-##Add the following below the file
-[battery]
-full_symbol = "🔋"
-charging_symbol = "⚡️"
-discharging_symbol = "💀"
-
-##The display configuration option is used to define when the battery indicator should be shown (threshold) and what it looks like (style).
-[[battery.display]]
-threshold = 10
-style = "bold red"
-
-[[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
-threshold = 30
-style = "bold yellow"
-
 # How long the command took to run (if greater than the min_time
 [cmd_duration]
 min_time = 500
-format = "underwent [$duration](bold yellow)"
+format = '\[[⏱ $duration]($style)\]'
+
+#aws
+[aws]
+symbol = "  "
+style = "cyan bold"
+format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
 
 # Docker
 [docker_context]
 format = "via [🐋 $context](blue bold)"
 
+#docker_context
+[dotnet]
+style = "cyan bold"
+format = '\[[$symbol($version)(🎯 $tfm)]($style)\]'
+
 # Git
 [git_branch]
-symbol = "🌱 "
+symbol = " "
 truncation_length = 16
 truncation_symbol = ""
+style = "purple bold"
+format = '([\[$symbol$branch\]]($style))'
 
 [git_commit]
 commit_hash_length = 7
 tag_symbol = "🔖 "
 
 [git_state]
+style = "purple bold"
 format = '[\($state( $progress_current of $progress_total)\)]($style) '
 cherry_pick = "[🍒 PICKING](bold red)"
 
@@ -75,23 +75,36 @@ modified = "📝"
 staged = '[++\($count\)](green)'
 renamed = "👅"
 deleted = "🗑"
+style = "red bold"
+format = '([\[$all_status$ahead_behind\]]($style))'
 
 # Hostname
 [hostname]
 ssh_only = false
-format =  "on [$hostname](bold red) "
+style = "red bold"
+format =  "on [$hostname]($style) "
 trim_at = ".companyname.com"
 disabled = false
 
 # Lua
 [lua]
-format = "via [🌕 $version](bold blue) "
+style = "bold blue"
+format = '\[[$symbol($version)]($style)\]'
 
 # NodeJS
 [nodejs]
-format = "via [🤖 $version](bold green) "
+symbol = " "
+style = "bold green"
+format = '\[[$symbol($version)]($style)\]'
 
 # Python
 [python]
 symbol = "🐍 "
 pyenv_version_name = true
+style = "bold green"
+format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+
+# Ruby
+[ruby]
+style = "bold red"
+format = '\[[$symbol($version)]($style)\]'
