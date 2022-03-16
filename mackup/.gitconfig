@@ -166,3 +166,6 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+[user]
+	name = Jason D Peek
+	email = jdpeek74@gmail.com
