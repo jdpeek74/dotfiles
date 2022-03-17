@@ -60,12 +60,15 @@
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
 
-	# Merge GitHub pull request on top of the `master` branch
+	# Merge GitHub pull request on top of the current branch or specified branch
 	mpr = "!f() { \
+		declare currentBranch=\"$(git symbolic-ref --short HEAD)\";\
+		declare branch=\"${2:-$currentBranch}\"; \
 		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
 			git fetch origin refs/pull/$1/head:pr/$1 && \
-			git rebase master pr/$1 && \
-			git checkout master && \
+			git checkout -B $branch && \
+			git rebase $branch pr/$1 && \
+			git checkout -B $branch && \
 			git merge pr/$1 && \
 			git branch -D pr/$1 && \
 			git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
@@ -96,6 +99,10 @@
 	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
 	precomposeunicode = false
 
+	# Speed up commands involving untrackeed files such as 'git status'.
+	# https://git-scm.com/docs/git-update-index#_untracked_cache
+	untrackedCache = true
+
 [color]
 
 	# Use colors in Git commands that are capable of colored output when
@@ -125,6 +132,10 @@
 
 	# Detect copies as well as renames
 	renames = copies
+
+[diff "bin"]
+	# use 'hexdump' to diff binary Files
+	textconv = hexdump -v -C
 
 [help]
 

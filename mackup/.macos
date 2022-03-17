@@ -1,29 +1,52 @@
-# OS X for Hackers (Mavericks)
+#!/usr/bin/env/sh
 
-#!/bin/sh
+# Close any open System Preferences panes to prevent overiding settings
+# that are being changed in this file
+osascript -e 'tell application "System Preferences" to quit'
 
 # Here we go.. ask for the administrator password upfront and run a
 # keep-alive to update existing `sudo` time stamp until script has finished
 sudo -v
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-echo "Hacking..."
+echo "Configuring MacOS..."
 
 ###############################################################################
 # General UI/UX"
 ###############################################################################
 
+# Set computer name
+echo "Computer Name..."
+sudo scutil --set ComputerName "JDPeek MacBook Pro"
+sudo scutil --set HostName "JDPeek MacBook Pro"
+sudo scutil --set LocalHostName "JDPeek-MBPro"
+
+echo "Dashboard Settings..."
 # Disable the dashboard
 defaults write com.apple.dashboard mcx-disabled -bool true
 
 # Don’t show Dashboard as a Space
 defaults write com.apple.dock dashboard-in-overlay -bool true
 
+echo "Dock Settings..."
+# Don't show recent apps in dock
+defaults write com.apple.dock show-recents -bool false
+
+# Automatically hide and show dock
+defaults write com.apple.dock autohide -bool true
+
+# Make dock icons of hidden apps translucent
+defaults write com.apple.dock showhidden -bool true
+
+echo "Windows and Panels Settings..."
 # Increasing the window resize speed for Cocoa applications
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
 
 # Expanding the save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+# Expand print panel by default
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
@@ -33,42 +56,49 @@ defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 # Saving to disk (not to iCloud) by default
 defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
+echo "Login Settings..."
 # Reveal IP address, hostname, OS version, etc. when clicking the clock in the login window
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
 
-# Check for software updates daily, not just once per week
-defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
-
-# Disable smart quotes and smart dashes as they're annoying when typing code
-defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
-defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
-
-# Restart automatically if the computer freezes
-sudo systemsetup -setrestartfreeze on
-
+echo "User Interface Devices Settings..."
 # Trackpad, mouse, keyboard, bluetooth and input
 # Enabling full keyboard access for all controls (e.g. enable Tab in modal dialogs)
 defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-# Disabling press-and-hold for keys in favor of a key repeat
-defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-
 # Setting a blazingly fast keyboard repeat rate (ain't nobody got time fo special chars while coding!)
 defaults write NSGlobalDomain KeyRepeat -int 0
 
-# Automatically illuminate built-in keyboard in low light
-defaults write com.apple.BezelServices kDim -bool true
+# Disable the "Are you sure you want to open this application?" dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-# Turn off keyboard illumination when computer is not used for 5 minutes
-defaults write com.apple.BezelServices kDimTime -int 300
+# Set Help Viewer windows to non-floating mode
+defaults write com.apple.helpviewer DevMode -bool true
+
+# Disable automatic capitalization as it's annoying when writing code
+# defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+# Disable smart dashes as it's annoying when writing code
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# Disable automatic period substitution as it's annoying when writing code
+# defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# Disable smart quotes  as i's annoying when writing code
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+###############################################################################
+# Audio 
+###############################################################################
+
+echo "Audio Settings..."
+# Increase aduio quality for bluetooth headphones
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 ###############################################################################
 # Finder
 ###############################################################################
 
-# Allow quitting via ⌘ + Q; doing so will also hide desktop icons
-defaults write com.apple.finder QuitMenuItem -bool true
-
+echo "Finder Settings..."
 # Showing all filename extensions in Finder by default
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
@@ -78,14 +108,12 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # Allowing text selection in Quick Look/Preview in Finder by default
 defaults write com.apple.finder QLEnableTextSelection -bool true
 
-# Displaying full POSIX path as Finder window title
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
-
 # Disabling the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
-# Use column view in all Finder windows by default
-defaults write com.apple.finder FXPreferredViewStyle Clmv
+# Use list view in all Finder windows by default
+# For other view modes: 'icnv', 'clmv', 'glyv'
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
 
 # When performing a search, search the current folder by default
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
@@ -120,16 +148,14 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 # Show hidden files by default
 defaults write com.apple.finder AppleShowAllFiles -bool true
 
+# Keep folders on top when sorting by name
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+
 ###############################################################################
 # Safari
 ###############################################################################
 
-# Set Safari home page to 'about:blank' for faster loading
-defaults write com.apple.Safari HomePage -string "about:blank"
-
-# Prevent Safari from opening ‘safe’ files automatically after downloading
-defaults write com.apple.Safari AutoOpenSafeDownloads -bool false
-
+echo "Safari Settings..."
 # Hiding Safari bookmarks bar by default
 defaults write com.apple.Safari ShowFavoritesBar -bool false
 
@@ -153,25 +179,28 @@ defaults write com.apple.Safari "com.apple.Safari.ContentPageGroupIdentifier.Web
 # Adding a context menu item for showing the Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
+# Warn about fraudulent websites
+defaults write com.apple.Safari WarAboutFraudulentWebsites -bool true
+
+# Update extensions automatically
+defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
+
 ###############################################################################
 # Mail
 ###############################################################################
 
+echo "Mail Settings..."
 # Setting email addresses to copy as 'foo@bar.com' instead of 'Foo Bar <foo@bar.com>'
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
-# Add the keyboard shortcut ⌘ + Enter to send an email in Mail.app
-defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" -string "@\\U21a9"
-
-# Display emails in threaded mode, sorted by date (oldest at the top)
-defaults write com.apple.mail DraftsViewerAttributes -dict-add "DisplayInThreadedMode" -string "yes"
-defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortedDescending" -string "yes"
-defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortOrder" -string "received-date"
+# Disable Inline attachements (show icons instead)
+defaults write com.apple.mail DisableInlineAttachementViewing -bool true
 
 ###############################################################################
 # Terminal
 ###############################################################################
 
+echo "Terminal and iTerm Settings..."
 # Enabling UTF-8 ONLY in Terminal.app and setting the Pro theme by default
 defaults write com.apple.terminal StringEncodings -array 4
 defaults write com.apple.Terminal "Default Window Settings" -string "Pro"
@@ -180,14 +209,40 @@ defaults write com.apple.Terminal "Startup Window Settings" -string "Pro"
 # Don't display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
+###############################################################################
+# Screen
+###############################################################################
+
+echo "Screenshot Settings..."
+# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
+defaults write com.apple.screencapture type -string "png"
+
+# Re-enable subpixel anti-aliasing
+defaults write -g CGFontRenderingFontSmoothingDisabled -bool false
+
+# Save Screenshots to Downloads folder
+defaults write com.apple.screencapture location -string "${HOME}/Downloads"
+
+###############################################################################
+# Time Machine
+###############################################################################
+
+echo "Time Machine Settings..."
+# Prevent Time Machine from promptin to use new HDD as backup volumes
+defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
+
+###############################################################################
 # Activity Monitor
+###############################################################################
+
+echo "Activity Monitor Settings..."
 # Show the main window when launching Activity Monitor
 defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
 
-# Visualize CPU usage in the Activity Monitor Dock icon
+# Visualize CPU usage in dock icon
 defaults write com.apple.ActivityMonitor IconType -int 5
 
-# Show all processes in Activity Monitor
+# Show all process in Activity Monitor
 defaults write com.apple.ActivityMonitor ShowCategory -int 0
 
 # Sort Activity Monitor results by CPU usage
@@ -195,16 +250,62 @@ defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0
 
 ###############################################################################
-# Screen
+# App Store
 ###############################################################################
 
-# Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
-defaults write com.apple.screencapture type -string "png"
+echo "App Store Settings..."
+# Enable the WebKit Dev Tools
+defaults write com.apple.appstore WebKitDeveloperExtras -bool true
+
+# Enable Automatic updates
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+
+# Check for updates daily
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+# Download updates in background
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+
+# Install system data files & security updates
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+
+# Turn on app auto update
+defaults write com.apple.commerce AutoUpdate -bool true
 
 ###############################################################################
-# Miscellaneous
+# Transmission.app
 ###############################################################################
 
+echo "Transmission.app Settings..."
+# Use "~/Downloads/Torrents" to store incomplete Downloads
+defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
+defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/Torrents"
+
+# Use "~/Downloads" to store completed downloads
+defaults write org.m0k.transmission DownloadLocationConstant -bool true
+
+# Don't prompt for confirmation before downloading
+defaults write org.m0k.transmission DownloadAsk -bool false
+defaults write org.m0k.transmission MagnetOpenAsk -bool false
+
+# Don't prompt for confirmation before removing non-downloading active transfers
+defaults write org.m0k.transmission CheckRemoveDownloading -bool true
+
+# Trash original torrent files
+defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
+
+# Hide Donate message & legal disclaimer
+defaults write org.m0k.transmission WarningDonate -bool false
+defaults write org.m0k.transmission WarningLegal -bool false
+
+# Randomize port on launch
+defaults write org.m0k.transmission RandomPort -bool true
+
+###############################################################################
+# Misc
+###############################################################################
+
+echo "TextEdit Settings..."
 # Use plain text mode for new TextEdit documents
 defaults write com.apple.TextEdit RichText -int 0
 
@@ -217,7 +318,7 @@ defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" \
 	"Dock" "Finder" "Mail" "Messages" \
 	"Safari" "SystemUIServer" "Terminal" "iTerm" \
-	"iCal"; do
+	"iCal" "Transmission"; do
 	killall "${app}" > /dev/null 2>&1
 done
 

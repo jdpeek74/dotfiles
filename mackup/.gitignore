@@ -1,10 +1,12 @@
 # Folder view configuration files
 .DS_Store
+.DS_Store?
 Desktop.ini
 
 # Thumbnail cache files
 ._*
 Thumbs.db
+ehthumbs.db
 
 # Files that might appear on external disks
 .Spotlight-V100
@@ -16,7 +18,33 @@ Thumbs.db
 # Compiled C++ files
 *.out
 
+# Other compiled Files
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages
+# Better to unpack and commit raw source as git has it's own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.zip
+
+# Logs and DBs
+*.log
+*.sql
+*.sqlite
+
 # Application specific files
 venv
 node_modules
 .sass-cache
+.idea/
+.vscode
+.vagrant
