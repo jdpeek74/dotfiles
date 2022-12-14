@@ -1,5 +1,7 @@
 # If you come from bash you might have to change your $PATH.
+PATH="$(pyenv root)/shims:$PATH"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$(pyenv root)/versions/2.7.18/bin:$PATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/jdpeek/.oh-my-zsh"
@@ -123,5 +125,9 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 # partial completion suggestions
 zstyle ':completion:*' list-suffixeszstyle ':completion:*' expand prefix suffix
 autoload -Uz compinit && compinit
+
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
 
 eval "$(starship init zsh)"
