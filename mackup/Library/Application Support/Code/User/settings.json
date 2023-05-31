@@ -1,5 +1,10 @@
 {
     "editor.fontFamily": "FiraCode Nerd Font Mono",
+    "editor.guides.bracketPairs": true,
     "tabnine.experimentalAutoImports": true,
-    "workbench.editor.untitled.hint": "hidden"
+    "workbench.editor.untitled.hint": "hidden",
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "glsl-canvas.antialias": true
 }
