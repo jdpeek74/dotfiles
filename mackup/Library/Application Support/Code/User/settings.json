@@ -7,5 +7,6 @@
         "editor.formatOnType": true
     },
     "glsl-canvas.antialias": true,
-    "workbench.colorTheme": "Tokyo Night"
+    "workbench.colorTheme": "Tokyo Night",
+    "dimmer.enabled": true
 }
