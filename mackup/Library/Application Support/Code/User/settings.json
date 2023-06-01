@@ -6,5 +6,6 @@
     "[python]": {
         "editor.formatOnType": true
     },
-    "glsl-canvas.antialias": true
+    "glsl-canvas.antialias": true,
+    "workbench.colorTheme": "Tokyo Night"
 }
