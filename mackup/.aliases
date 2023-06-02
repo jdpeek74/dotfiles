@@ -9,6 +9,9 @@ alias dt="cd ~/Desktop"
 alias proj="cd ~/Developer/Projects"
 alias dotfiles="cd ~/Developer/Projects/dotfiles"
 
+# brew
+alias buou="brew update && brew outdated && brew upgrade && brew cleanup"
+
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
 	colorflag="--color"

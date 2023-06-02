@@ -62,6 +62,7 @@ brew "tree"
 brew "zsh"
 brew "zsh-completions"
 brew "mongodb-community"
+brew "warp"
 
 # mas
 

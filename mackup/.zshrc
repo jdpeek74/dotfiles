@@ -3,6 +3,10 @@ PATH="$(pyenv root)/shims:$PATH"
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH="$(pyenv root)/versions/2.7.18/bin:$PATH"
 
+# editors
+export EDITOR="code"
+export VISUAL="code"
+
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/jdpeek/.oh-my-zsh"
 
