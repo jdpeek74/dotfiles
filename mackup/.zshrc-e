@@ -135,4 +135,3 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 eval "$(starship init zsh)"
-[ -f "/Users/jdpeek/.ghcup/env" ] && source "/Users/jdpeek/.ghcup/env" # ghcup-env
