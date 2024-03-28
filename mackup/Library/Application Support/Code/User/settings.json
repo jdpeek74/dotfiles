@@ -2,7 +2,6 @@
     "editor.fontFamily": "FiraCode Nerd Font Mono",
     "editor.guides.bracketPairs": true,
     "tabnine.experimentalAutoImports": true,
-    "workbench.editor.untitled.hint": "hidden",
     "[python]": {
         "editor.formatOnType": true
     },
@@ -13,5 +12,6 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "editor.formatOnSave": true,
-    "haskell.manageHLS": "GHCup"
+    "haskell.manageHLS": "GHCup",
+    "workbench.editor.empty.hint": "hidden"
 }
