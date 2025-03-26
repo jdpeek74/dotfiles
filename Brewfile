@@ -1,18 +1,8 @@
-# tap
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/cask-fonts"
-tap "homebrew/core"
-tap "homebrew/services"
-tap "mas-cli/tap"
-tap "mongodb/brew"
-
 # brew
 brew "ack"
 brew "gcc"
 brew "bash"
 brew "bash-completion"
-brew "sqlite"
 brew "python@3.9"
 brew "coreutils"
 brew "libssh2"
@@ -38,8 +28,6 @@ brew "nghttp2"
 brew "node"
 brew "numpy"
 brew "nvm"
-brew "octave"
-brew "postgresql", restart_service: true
 brew "pybind11"
 brew "pyenv"
 brew "qemu"
@@ -68,7 +56,6 @@ brew "zx"
 # mas
 
 # cask
-cask "brackets"
 cask "cheatsheet"
 cask "docker"
 cask "dotnet"
@@ -76,7 +63,6 @@ cask "dropbox"
 cask "font-fira-code"
 cask "google-chrome"
 cask "iterm2"
-cask "sequel-pro"
 cask "firefox"
 cask "slack"
 cask "transmission"
