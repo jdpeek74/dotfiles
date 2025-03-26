@@ -63,6 +63,7 @@ brew "zsh"
 brew "zsh-completions"
 brew "mongodb-community"
 brew "warp"
+brew "zx"
 
 # mas
 

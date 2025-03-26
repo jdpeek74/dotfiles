@@ -13,5 +13,10 @@
     },
     "editor.formatOnSave": true,
     "haskell.manageHLS": "GHCup",
-    "workbench.editor.empty.hint": "hidden"
+    "workbench.editor.empty.hint": "hidden",
+    "enableTelemetry": true,
+    "exclude": "{**/.angular/**,**/node_modules/**,**/bower_components/**,**/dist/**,**/build/**,**/.vscode/**,**/_output/**,**/vendor/**,**/*.min.*,**/*.map}",
+    "security.workspace.trust.untrustedFiles": "newWindow",
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "on"
 }

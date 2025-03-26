@@ -136,3 +136,6 @@ fi
 
 eval "$(starship init zsh)"
 [ -f "/Users/jdpeek/.ghcup/env" ] && source "/Users/jdpeek/.ghcup/env" # ghcup-env
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
